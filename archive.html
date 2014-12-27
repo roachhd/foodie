@@ -1,0 +1,102 @@
+---
+layout: default
+title: Archive
+
+
+img-archive: archive-back
+
+
+img-tag: oatmeal-back
+
+
+img-workout-gear: 
+    - archive-workout-pullup-back
+    - archive-workout-nothing-back
+    - archive-workout-ledge-back
+
+
+img-size:
+    default: -default.jpg
+    large: -large.jpg
+    
+---
+    <div class="wrap" 
+        type="image/jpg" 
+        data-interchange="[{{site.baseurl}}/img/{{page.title | downcase }}/{{page.title | downcase }}-480w.jpg, (only screen and (min-width: 1px))],
+        [{{site.baseurl}}/img/{{page.img}}/{{page.title | downcase }}/{{page.title | downcase }}-768w.jpg, (only screen and (min-width: 481px))],
+        [{{site.baseurl}}/img/{{page.img}}/{{page.title | downcase }}/{{page.title | downcase }}-1024w.jpg, (only screen and (min-width: 769px))],
+        [{{site.baseurl}}/img/{{page.img}}/{{page.title | downcase }}/{{page.title | downcase }}-1440w.jpg, (only screen and (min-width: 1025px))],
+        [{{site.baseurl}}/img/{{page.img}}/{{page.title | downcase }}/{{page.title | downcase }}-1600w.jpg, (only screen and (min-width: 1441px))],
+        [{{site.baseurl}}/img/{{page.img}}/{{page.title | downcase }}/{{page.title | downcase }}-1920w.jpg, (only screen and (min-width: 1601px))]">
+    
+    
+                                     
+            <div class="row main">
+                <div class="small-12 columns">
+                    <!-- ACCORDION AND TAB MENU -->
+                    <dl class="tabs" data-tab>
+                        <dd class="medium-4 columns active"><a href="#panel-tag"><span class="italic">BY</span> TAG</a></dd>
+                        <dd class="medium-4 columns"><a href="#panel-date"><span class="italic">BY</span> DATE</a></dd>
+                        <dd class="medium-4 columns"><a href="#panel-amount"><span class="italic">BY</span> SIZE</a></dd>
+                    </dl>
+                </div> 
+            </div>   
+        
+    </div>
+
+
+
+
+<!-- TAB CONTENT -->
+
+
+    <div class="tabs-content">
+        <div class="content row active" id="panel-tag">
+                {% for tag in site.tags %}
+                <div class="main">
+                {% assign currentTag = tag | first %}
+                <h2>{{ currentTag | upcase}}</h2>
+                {% for post in site.posts %}
+                    {% if post.tags contains currentTag %}
+                    <ul>
+                        <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+                    </ul>
+                    {% endif %}
+                {% endfor %}
+                </div>
+                {% endfor %}
+        </div>
+        <div class="content" id="panel-date">     
+            <!-- RECIPES ORDERED BY DATE -->
+            <ul class="main">
+            {% for post in site.posts %}
+                {% capture currentyear %}{{post.date | date: "%B %Y"}}{% endcapture %}
+                {% if currentyear != year %}
+                    {% unless forloop.first %}{% endunless %}
+                    <h2>{{ currentyear }}</h2>                             
+                    {% capture year %}{{currentyear}}{% endcapture %} 
+                {% endif %} 
+                {% if post.categories contains 'recipe' %}
+                        <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>          
+                {% endif %}
+            {% endfor %}
+            </ul>                                                                     
+        </div>     
+        <div class="content" id="panel-amount">     
+            <!-- RECIPES ORDERED BY PORTION SIZE -->
+            <div class="main">
+            {% for amount in site.data.amount %}
+                <h2>{{ amount }}</h2>
+            {% assign amount-site = amount %}
+                <ul>
+                {% for post in site.posts %}
+                    {% if post.amount == amount-site %}
+                        <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+                    {% endif %}                     
+                {% endfor %}
+                </ul>
+            {% endfor %}        
+            </div>                                                                                    
+        </div>                                                
+    </div>
+    
