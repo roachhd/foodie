@@ -1,0 +1,68 @@
+---
+title: blog
+layout: default-blog
+categories: blog
+---
+
+
+<div id="grid" data-columns> 
+
+
+{% for post in site.posts limit: 10 %}
+    <div class="preview"> 
+        <a class="" href="{{ site.baseurl }}{{ post.url }}">
+            <img data-sizes="auto"
+            class="lazyload" 
+            src="{{site.baseurl}}/img/{{post.img}}/{{post.img-preview}}-240w.jpg"
+            data-srcset="{{site.baseurl}}/img/{{post.img}}/{{post.img-preview}}-240w.jpg 240w,
+            {{site.baseurl}}/img/{{post.img}}/{{post.img-preview}}-320w.jpg 320w,
+            {{site.baseurl}}/img/{{post.img}}/{{post.img-preview}}-500w.jpg 500w,
+            {{site.baseurl}}/img/{{post.img}}/{{post.img-preview}}-640w.jpg 640w"
+            alt="{{ post.title }}" />
+            <h3>{{ post.title | upcase }}</h3>
+            <span class="date">{{ post.date | date: "%-d %B %Y" }}</span>
+        </a>
+    </div>
+
+
+    <!-- BLOG OLD WITH HOVER DETAILS -->
+                <!--
+                <div class="preview"> 
+                    <a class="" href="{{ site.baseurl }}{{ post.url }}">
+                        <figure class="caption embed">
+                        {% if post.img-size %}
+                                    
+                                     data-interchange="{% for size in post.img-size %}[{{site.baseurl}}/img/{{post.img-preview}}{{size[1]}} ({{size[0]}})]{% unless forloop.last %}, {% endunless %}{% endfor %}">              
+                                    
+                        {% endif %}
+                            
+                            <div class="caption-overlay">
+                                 <figcaption>
+                                {% if post.duration %}
+                                    <h3><span class="caption-title">{{ post.duration }}</span></h3>
+                                {% endif %} 
+                                {% if post.categories != empty %} 
+                                    <span class="caption-italic">tagged as</span></br>       
+                                {% endif %}
+                                    <h4 class="caption-tags">                  
+                                    {% if post.tags %}
+                                        {% if post.tags contains 'nothing' %}
+                                            <i class="fa fa-ban fa-lg"></i>
+                                        {% else %}
+                                            {{ post.tags | join: ', '}}                     
+                                        {% endif %}
+                                    {% endif %}
+                                    </h4>
+                                </figcaption>   
+                            </div>
+                        </figure>          
+                        <h3>{{ post.title | upcase }}</h3>
+                        <span class="date">{{ post.date | date: "%-d %B %Y" }}</span>
+                    </a>    
+                </div>
+                -->
+               
+{% endfor %}
+
+
+</div>
