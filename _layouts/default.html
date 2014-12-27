@@ -1,0 +1,27 @@
+---
+layout: compress
+---
+
+
+<!DOCTYPE HTML>
+<html class="no-js" lang="en">
+    {% include head.html %}
+    <body>
+        {% include top-bar.html %}
+        <div id="padding-top">         
+            <div {% if page.title == 'About' or page.title == 'Disclaimer' %} class="row"{% endif %}>           
+                <div {% if page.title == 'Archive' or page.title == 'About' or page.title == 'Disclaimer' %} class="main {{ page.title | downcase }}"{% endif %}>           
+                    {{ content }}       
+                </div>
+            </div> 
+        {% if page.title != 'Archive' and page.title != 'About' and page.title != 'Disclaimer' %}              
+            {% include related-posts.html %}   
+        {% endif %} 
+        </div>  
+        {% if page.title == 'Archive' or page.title == 'About' %}             
+            {% include footer-white.html %}
+        {% else %}
+            {% include footer.html %}
+        {% endif %}
+    </body>
+</html>
