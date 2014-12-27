@@ -1,0 +1,29 @@
+# Site settings
+title: Foodie
+email: katie@roachhd.com
+author: "Katie Ball"
+description: Food blog for modest and clean recipes.
+baseurl: "" 
+url: "http://roachhd.github.io/foodie"
+twitter: mekgball
+github:  roachhd
+facebook: roachhd
+
+
+image: apple-touch-icon-180x180.png
+# Build settings
+markdown: kramdown
+
+
+permalink: pretty
+sass:
+    sass_dir: bower_components/foundation/scss
+    style: compressed
+
+
+exclude:
+    - Gemfile
+    - Gemfile.lock
+    - README.md
+    - bower.json
+    - node_modules/*
