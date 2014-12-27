@@ -1,0 +1,57 @@
+---
+layout: default-post
+---
+
+
+<!--more-->
+
+
+<div itemscope itemtype="http://schema.org/Recipe">
+    {% if page.img-size %}
+    <div class="wrap hide-for-print" data-interchange="{% for size in page.img-size %}[{{site.baseurl}}/asset/img/{{page.img-background}}{{size[1]}} ({{size[0]}})]{% unless forloop.last %}, {% endunless %}{% endfor %}">             
+    {% endif %}
+      <div class="row">
+            <div class="large-4 columns show-for-large-up"></div>
+            <div class="small-12 small-centered medium-6 medium-centered columns basic-info">
+                <div class="workout-shape">
+                    <h2><span itemprop="name">{{ page.title | upcase }}</span></h2>
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <ul>
+                                <li><div itemprop="nutrition" itemscope itemtype="http://schema.org/NutritionInformation">requires <h3><span itemprop="description">{{ page.tags }}</span></h3></div></li>
+                                <li>type<h3><span itemprop="description"><span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:medium" title="{{ page.type }}">{{ page.typeShort }}</span></span></h3></li> 
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="large-4 columns show-for-large-up"></div>
+        </div>
+    </div>
+
+
+
+
+    <div class="row main">
+       
+        {{ content }}
+  
+        <div class="small-12 columns">
+            <h3>Note</h3>
+            <p>{{ page.note }}</p>
+        </div>
+        
+        
+        {% include share.html %}
+        
+            
+        <div class="small-12 columns">
+            {% if page.comments == true %}
+            <h3>Comment</h3>
+            {% endif %}            
+            {% include disqus.html %}
+        </div>
+       
+    </div>   
+</div>
+  
